@@ -1,0 +1,123 @@
+body, body * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    font-size: 46px;
+    margin-bottom: 30px;
+    padding: 20px 0;
+    line-height: 100%;
+}
+.instructions {
+    width: 680px;
+    max-width: 96%;
+    background: rgba(255,255,255,1);
+    padding: 42px;
+    margin: 10% auto;
+    border-radius: 10px;
+}
+.md {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.md *:last-child {
+    margin: 0;
+}
+.md h1 {
+    font-family: inherit;
+    color: inherit;
+    font-weight: 600;
+    text-align: initial;
+    margin: 0 0 16px;
+    padding: 0 0 0.3em;
+    font-size: 32px;
+    border-bottom: 1px solid #eaecef;
+}
+.md h2 {
+    padding-bottom: 8px;
+    font-size: 24px;
+    border-bottom: 1px solid #eaecef;
+    line-height: 1.25;
+    margin: 24px 0 16px;
+    font-weight: 600;
+}
+.md h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 24px 0 16px;
+}
+.md pre {
+    padding: 16px;
+    background: #f6f8fa;
+    margin: 0 0 16px;
+    white-space: pre-line;
+}
+.md pre .comment {
+    text-indent: -14px;
+    display: block;
+    padding-left: 14px;
+    color: rgba(0,0,0,0.5);
+}
+.md p {
+    font-size: 16px;
+    margin: 0 0 16px;
+}
+#input {
+    position: relative;
+    width: 680px;
+    max-width: 96%;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    margin: 10% auto;
+    border-radius: 10px;
+}
+#input .output {
+    color: #fff;
+    font-size: 16px;
+    font-family: monospace;
+}
+.inputs {
+    display: flex;
+}
+.inputs input {
+    width: 100%;
+    font-size: 28px;
+    text-align: center;
+    color: rgba(0,0,0,0.7);
+    border: 0;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    font-family: monospace;
+    outline: 0;
+}
+#color {
+    flex: 6;
+    margin-right: 20px;
+}
+#count {
+    flex: 1;
+}
+button {
+    width: 200px;
+    margin: 0 auto 30px;
+    display: block;
+    background: crimson;
+    border: 0;
+    color: #fff;
+    padding: 6px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+    outline: 0;
+    font-family: 'Pacifico', cursive;
+}
+@media screen and (max-width: 480px) {
+    .inputs input {
+        font-size: 20px;
+    }
+}
