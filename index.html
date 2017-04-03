@@ -6,26 +6,28 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="input">
-        <h1>Color Spread</h1>
-        <div class="inputs">
-            <input id="color" type="text" placeholder="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;" value="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;"/>
-            <input id="count" type="text" placeholder="24" value="24"/>
-        </div>
-        <button type="button" onclick="update()">Update</button>
-        <div class="output"></div>
-    </div>
-    <div class="instructions">
-        <div class="md">
+    <div class="container">
+        <div id="input">
             <h1>Color Spread</h1>
-            <p>Return an array of colors</p>
-            <h2>Usage</h2>
-            <h3>Pass array and number for the spread</h3>
-            <pre>colorSpread(array, count);</pre>
-            <h3>The number passed is the amount of colors you are returned</h3>
-            <pre>let colors = ['#6d57f4','12f668','f4a','"#f5ca0a"'];<br><br>console.log(colorSpread(colors, 12));<br>
-            <span class="comment">> ["#6d57f4", "#567fd1", "#40a7ae", "#29ce8b", "#12f668", "#4dca79", "#899d89", "#c4719a", "#ff44aa", "#fc7175", "#f89d3f", "#f5ca0a"]</span></pre>
-            <p>You can enter the hex values with or without #, shorthand, or even in single or double quotes or back-ticks.</p>
+            <div class="inputs">
+                <input id="color" type="text" placeholder="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;" value="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;"/>
+                <input id="count" type="text" placeholder="24" value="24"/>
+            </div>
+            <button type="button" onclick="update()">Update</button>
+            <div class="output"></div>
+        </div>
+        <div class="instructions">
+            <div class="md">
+                <h1>Color Spread</h1>
+                <p>Return an array of colors</p>
+                <h2>Usage</h2>
+                <h3>Pass array and number for the spread</h3>
+                <pre>colorSpread(array, count);</pre>
+                <h3>The number passed is the amount of colors you are returned</h3>
+                <pre>let colors = ['#6d57f4','12f668','f4a','"#f5ca0a"'];<br><br>console.log(colorSpread(colors, 12));<br>
+                <span class="comment">> ["#6d57f4", "#567fd1", "#40a7ae", "#29ce8b", "#12f668", "#4dca79", "#899d89", "#c4719a", "#ff44aa", "#fc7175", "#f89d3f", "#f5ca0a"]</span></pre>
+                <p>You can enter the hex values with or without #, shorthand, or even in single or double quotes or back-ticks.</p>
+            </div>
         </div>
     </div>
     <script src="js/colorspread.js"></script>
