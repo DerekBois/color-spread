@@ -49,7 +49,6 @@
             return `linear-gradient(${degrees}deg,${lines});`;
         }
         const returnGrad = (colors, degrees = 90) => {
-            console.log(degrees);
             let lines = colors.reduce((prev, curr) => `${prev}, ${curr}`);
             return `linear-gradient(${degrees}deg,${lines});`;
         }
