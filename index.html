@@ -55,9 +55,12 @@
         }
         [...outputs].forEach(o => o.innerHTML = finalColors.join(', '));
         if (count >= 600) {
-            return document.body.style.cssText = `background: ${returnGrad(colorSpread(colors, colors.length), angle)}`;
+            return document.body.style.cssText = 
+                `background: ${returnGrad(colorSpread(colors, colors.length), angle)}; `+
+                `background-attachment: fixed`;
         }
-        document.body.style.cssText = `background: ${returnLines(finalColors, angle)}`;
+        document.body.style.cssText = 
+            `background: ${returnLines(finalColors, angle)}; background-attachment: fixed`;
     }
     const update = () => {
         let count = Number(countInput.value) || initCount || colorsArray.length,
