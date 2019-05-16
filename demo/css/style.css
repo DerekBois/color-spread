@@ -93,6 +93,7 @@ h1 {
     background: #f6f8fa;
     margin: 0 0 16px;
     white-space: pre-line;
+    word-break: break-word;
 }
 .md pre .comment {
     text-indent: -14px;
