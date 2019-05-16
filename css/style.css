@@ -13,18 +13,29 @@ h1 {
     padding: 20px 0;
     line-height: 100%;
 }
+#color-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: flex;
+}
+.color-wedge {
+    flex: 1;
+}
 .container {
     width: 680px;
     margin: 6% auto;
     max-width: 96%;
     border-radius: 10px;
     overflow: hidden;
+    position: relative;
 }
 #input {
     background: rgba(0,0,0,0.5);
     padding: 20px;
 }
-#input .output {
+#output {
     color: #fff;
     font-size: 16px;
     font-family: monospace;

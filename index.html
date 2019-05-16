@@ -1,88 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="input">
-            <h1>Color Spread</h1>
-            <div class="inputs">
-                <input id="color" type="text" placeholder="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;" value="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;"/>
-                <input id="count" type="text" placeholder="24" value="24"/>
-            </div>
-            <button type="button" onclick="update()">Update</button>
-            <div class="output"></div>
-        </div>
-        <div class="instructions">
-            <div class="md">
-                <h1>Color Spread</h1>
-                <p>Return an array of colors</p>
-                <h2>Usage</h2>
-                <h3>Pass array and number for the spread</h3>
-                <pre>colorSpread(array, count);</pre>
-                <h3>The number passed is the amount of colors you are returned</h3>
-                <pre>let colors = ['#6d57f4','12f668','f4a','"#f5ca0a"'];<br><br>console.log(colorSpread(colors, 12));<br>
-                <span class="comment">> ["#6d57f4", "#567fd1", "#40a7ae", "#29ce8b", "#12f668", "#4dca79", "#899d89", "#c4719a", "#ff44aa", "#fc7175", "#f89d3f", "#f5ca0a"]</span></pre>
-                <p>You can enter the hex values with or without #, shorthand, or even in single or double quotes or back-ticks.</p>
-            </div>
-        </div>
+  <div id="color-container"></div>
+  <div class="container">
+    <form id="input" onsubmit="run(event)">
+      <h1>Color Spread</h1>
+      <div class="inputs">
+        <input id="color" type="text" placeholder="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;" value="#6d57f4, 12f668, f4a, &quot;#f5ca0a&quot;"/>
+        <input id="count" type="text" placeholder="24" value="24"/>
+      </div>
+      <button type="submit">Update</button>
+      <div id="output"></div>
+    </form>
+    <div class="instructions">
+      <div class="md">
+        <h1>Color Spread</h1>
+        <p>Return an array of colors</p>
+        <h2>Usage</h2>
+        <h3>Pass array and number for the spread</h3>
+        <pre>colorSpread(array, count);</pre>
+        <h3>The number passed is the amount of colors you are returned</h3>
+        <pre>let colors = ['#6d57f4','12f668','f4a','"#f5ca0a"'];<br><br>console.log(colorSpread(colors, 12));<br>
+        <span class="comment">> ["#6d57f4", "#567fd1", "#40a7ae", "#29ce8b", "#12f668", "#4dca79", "#899d89", "#c4719a", "#ff44aa", "#fc7175", "#f89d3f", "#f5ca0a"]</span></pre>
+        <p>You can enter the hex values with or without #, shorthand, or even in single or double quotes or back-ticks.</p>
+      </div>
     </div>
-    <script src="js/colorspread.js"></script>
-    <script>
-    var colorInput = document.getElementById('color'),
-        countInput = document.getElementById('count'),
-        outputs = document.querySelectorAll('.output'),
-        initColors = ['#6d57f4','12f668','f4a',`"#f5ca0a"`],
-        initCount = 24;
+  </div>
+  <script src="js/colorspread.js"></script>
+  <script>
+    const colorBox = document.getElementById('color-container');
+    const output = document.getElementById('output');
 
-    const loadIt = (colors, count, angle = 100) => {
-        let finalColors = colorSpread(colors, count);
+    function run(e) {
+      const colorsValue = document.getElementById('color').value;
+      const count = +document.getElementById('count').value;
 
-        const returnLines = (colors, degrees = 90) => {
-            let lines = colors.reduce((prev, curr, i) => {
-                const num = (n) => (n/colors.length*100).toFixed(4);
-                return [...prev, [`${curr} ${num(i)}%`], [`${curr} ${num(i+1)}%`]];
-            }, []).join(',');
-            return `linear-gradient(${degrees}deg,${lines});`;
-        }
-        const returnGrad = (colors, degrees = 90) => {
-            let lines = colors.reduce((prev, curr) => `${prev}, ${curr}`);
-            return `linear-gradient(${degrees}deg,${lines});`;
-        }
-        [...outputs].forEach(o => o.innerHTML = finalColors.join(', '));
-        if (count >= 600) {
-            return document.body.style.cssText = 
-                `background: ${returnGrad(colorSpread(colors, colors.length), angle)}; `+
-                `background-attachment: fixed`;
-        }
-        document.body.style.cssText = 
-            `background: ${returnLines(finalColors, angle)}; background-attachment: fixed`;
+      if (e) e.preventDefault();
+      if (!colorsValue || !count) return; // do something else here
+
+      const colors = colorsValue.split(',').reduce((a, b) => {
+        return [...a, ...b.trim().split(' ')];
+      }, []);
+      const spread = colorSpread(colors, count);
+      const returnSpans = (colors) => {
+        return colors.reduce((a, col) => {
+          const style = `style="background-color: ${col}"`;
+          return a + `<span class="color-wedge" ${style}></span>`;
+        }, '');
+      }
+      if (count > 600) {
+        const col = colorSpread(colors, colors.length);
+        const lines = col.reduce((prev, curr) => `${prev}, ${curr}`);
+        colorBox.style.cssText = `background: linear-gradient(90deg, ${lines});`;
+        colorBox.innerHTML = '';
+        return;
+      }
+      colorBox.innerHTML = returnSpans(spread);
+      colorBox.style.cssText = `background: none`;
+      output.innerHTML = spread.join(', ');
     }
-    const update = () => {
-        let count = Number(countInput.value) || initCount || colorsArray.length,
-            initArray = colorInput.value ? colorInput.value.split(',') : [],
-            colorsArray = [];
-
-        initArray.forEach(item => {
-            colorsArray = [...colorsArray, ...item.trim().split(' ')];
-        })
-        colorsArray = colorsArray.length ? colorsArray : initColors;
-        loadIt(colorsArray, count);
-    }
-    [colorInput,countInput].forEach(inp => {
-        inp.onkeypress = function() {
-            var e = e || window.event,
-                keyCode = e.keyCode || e.which;
-
-            if (keyCode == '13') {
-                update();
-            }
-        }
-    })
-    loadIt(initColors,initCount);
-    </script>
+    run();
+  </script>
 </body>
 </html>
